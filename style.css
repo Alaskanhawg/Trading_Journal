@@ -68,3 +68,19 @@ img { display: block; width: 100%; height: auto; }
 .chart-link { display: flex; justify-content: space-between; gap: .5rem; padding: .75rem 1rem; }
 .notes h4 { font-size: 1rem; }
 .notes p { margin-top: .65rem; color: var(--muted); line-height: 1.7; }
+
+.stats {
+  margin: 0 0 1.25rem;
+  padding: .9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+}
+
+.stats:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 2rem;
+}
+
+.stats dt { color: var(--muted); font-size: .875rem; }
+.stats dd { margin: .2rem 0 0; font-family: var(--mono); font-size: 1.25rem; }

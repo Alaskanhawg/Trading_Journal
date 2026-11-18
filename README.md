@@ -6,8 +6,9 @@ A static journal for sharing WealthCharts screenshots and trade reflections. The
 
 1. Save a WealthCharts screenshot under `screenshots/`. Crop out account numbers and other details you want to keep private.
 2. In `index.html`, copy the `<article class="trade">` section and paste it above the latest trade. Replace the sample entry when you add your first real trade.
-3. Update the date in both places, the contract, the setup, and the notes. Point both the image and its link to the new screenshot. Update the image description and dimensions to match the screenshot.
-4. Save and commit the changes along with the new screenshot.
+3. Set the article’s `data-outcome` to `win` or `loss` when confirmed and update its visible outcome label. Leave the attribute and label off when the result is unknown. The totals are calculated from the trade entries.
+4. Update the date in both places, the contract, the setup, and the notes. Point both the image and its link to the new screenshot. Update the image description and dimensions to match the screenshot.
+5. Save and commit the changes along with the new screenshot.
 
 ## Run locally
 

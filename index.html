@@ -6,6 +6,7 @@
   <meta name="description" content="Futures trade screenshots and reflections.">
   <title>AlaskanHawg’s Journal</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="stats.js"></script>
 </head>
 <body>
   <header class="masthead">
@@ -17,9 +18,30 @@
   </header>
   <main class="container">
     <h2 class="section-title">Trade log</h2>
-    <article class="trade">
+    <dl class="stats" aria-label="Trade outcomes" hidden>
+      <div><dt>Wins</dt><dd data-count="win"></dd></div>
+      <div><dt>Losses</dt><dd data-count="loss"></dd></div>
+      <div><dt>Unconfirmed</dt><dd data-count="unconfirmed"></dd></div>
+    </dl>
+    <article class="trade" data-outcome="win">
       <header>
-        <p class="meta">Short <span aria-hidden="true">·</span> <time datetime="2026-11-18">November 18, 2026</time></p>
+        <p class="meta">Short · Win <span aria-hidden="true">·</span> <time datetime="2026-11-18">November 18, 2026</time></p>
+        <h3>MNQ · Second Quantum candle short</h3>
+      </header>
+      <figure>
+        <a href="screenshots/MNQ1%21_2026-11-18_08-54-38_779a5.png">
+          <img src="screenshots/MNQ1%21_2026-11-18_08-54-38_779a5.png" width="1835" height="1124" alt="One-minute MNQ chart showing the break below the blue Quantum candle and the marked short setup.">
+          <span class="chart-link">Open full-size chart <span aria-hidden="true">↗</span></span>
+        </a>
+      </figure>
+      <div class="notes">
+        <h4>My notes</h4>
+        <p>A candle closed below the blue Quantum candle on the left. I took the short, and it was a win.</p>
+      </div>
+    </article>
+    <article class="trade" data-outcome="win">
+      <header>
+        <p class="meta">Short · Win <span aria-hidden="true">·</span> <time datetime="2026-11-18">November 18, 2026</time></p>
         <h3>MNQ · Quantum candle retest</h3>
       </header>
       <figure>
