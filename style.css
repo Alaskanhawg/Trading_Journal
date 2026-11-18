@@ -1,0 +1,31 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+  background: #101716;
+  color: #e9f0eb;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+.container { width: min(100% - 2rem, 58rem); margin-inline: auto; }
+
+.masthead {
+  border-bottom: 1px solid #33453d;
+  background: #15201c;
+  padding-block: clamp(2rem, 6vw, 4rem);
+}
+
+h1, h2, h3, p, figure { margin: 0; }
+h1 { font-family: Georgia, serif; font-size: clamp(2.75rem, 8vw, 5.5rem); letter-spacing: -.05em; }
+.masthead p { color: #b3c8bc; margin-top: .5rem; }
+main { padding-block: clamp(1.5rem, 5vw, 3rem) 4rem; }
+.trade { border: 1px solid #33453d; border-radius: 1rem; background: #18221e; overflow: hidden; }
+.trade + .trade { margin-top: 1.5rem; }
+.trade header, .notes { padding: clamp(1rem, 4vw, 2rem); }
+.meta { color: #a5cfb6; font-size: .875rem; margin-bottom: .4rem; }
+h2 { font-size: clamp(1.25rem, 4vw, 2rem); }
+figure { margin-inline: clamp(1rem, 4vw, 2rem); }
+figure a { display: block; border: 1px solid #41594c; border-radius: .5rem; overflow: hidden; }
+figure a:focus-visible { outline: 3px solid #91e3ac; outline-offset: 4px; }
+img { display: block; width: 100%; height: auto; }
+.notes p { max-width: 68ch; margin-top: .6rem; color: #c4d2cb; line-height: 1.65; }
