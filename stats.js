@@ -13,4 +13,8 @@ for (const trade of document.querySelectorAll('.trade')) {
 for (const count of summary.querySelectorAll('[data-count]')) {
   count.textContent = counts[count.dataset.count];
 }
+const decided = counts.win + counts.loss;
+summary.querySelector('[data-rate]').textContent = decided
+  ? new Intl.NumberFormat(undefined, { style: 'percent', maximumFractionDigits: 1 }).format(counts.win / decided)
+  : '—';
 summary.hidden = false;

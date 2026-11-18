@@ -17,3 +17,7 @@ From the repository, run `python3 -m http.server 8000 --bind 127.0.0.1` and open
 ## Publish to GitHub Pages
 
 After pushing the site to `main`, open the repository on GitHub and go to **Settings → Pages**. Select **Deploy from a branch**, then select **main** and **/ (root)** and save. Once the deployment finishes, copy the site URL from that page. GitHub Pages access depends on your repository and plan. Treat the published site and everything committed to a public repository as publicly accessible.
+
+## Edit trade titles and notes
+
+Open the journal with `?edit=1` at the end of the URL. Update the fields under each trade and click **Download updated page**. Upload the downloaded `index.html` to the root of the GitHub repository and commit it to publish the edits. Use a freshly loaded editor each time so you start with the latest trades.
