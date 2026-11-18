@@ -93,7 +93,7 @@ img { display: block; width: 100%; height: auto; }
 .editor { margin: 0 0 1.25rem; display: grid; gap: .65rem; }
 .editor:has(label) { margin: 0; padding: var(--inset); border-top: 1px solid var(--line); }
 .editor label { display: grid; gap: .3rem; }
-.editor :is(input, textarea, button) {
+.editor :is(input, textarea, select, button) {
   font: inherit;
   padding: .6rem;
   border: 1px solid var(--line);

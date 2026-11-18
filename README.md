@@ -21,3 +21,17 @@ After pushing the site to `main`, open the repository on GitHub and go to **Sett
 ## Edit trade titles and notes
 
 Open the journal with `?edit=1` at the end of the URL. Update the fields under each trade and click **Download updated page**. Upload the downloaded `index.html` to the root of the GitHub repository and commit it to publish the edits. Use a freshly loaded editor each time so you start with the latest trades.
+
+## Enable direct publishing with Supabase
+
+1. Create a Supabase project. In its SQL Editor, run `supabase/schema.sql` once. This imports both existing trades and creates the table and chart bucket. Charts and published trade entries are publicly readable.
+2. In **Authentication → Users**, create and confirm your owner account. Disable public sign-ups in Authentication settings. Copy your user's UUID and run this in the SQL Editor, replacing the placeholder:
+
+   ```sql
+   insert into public.journal_owner (user_id) values ('YOUR_USER_UUID');
+   ```
+
+3. Put the project's HTTPS URL and **publishable key** in `supabase-config.js`. Only publishable keys belong in this public repository. Keep passwords and server keys out of it.
+4. Deploy to GitHub Pages. Visit the journal with `?edit=1`, sign in, and use **Publish trade** or **Save changes**. The public page loads the updated entries directly. Reloading the editor requires signing in again.
+
+Until the URL and key are configured, the journal serves its current static entries. The download-based editor remains available in that mode.
