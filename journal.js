@@ -124,7 +124,22 @@ if (projectUrl && publishableKey) {
   }
 
   function showSignIn() {
-    panel.innerHTML = '<form class="editor"><label>Email<input name="email" type="email" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button>Sign in</button></form>';
+    panel.innerHTML = '<form class="editor"><label>Email<input name="email" type="email" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button>Sign in</button><button type="button" data-recover>Set or reset password</button></form>';
+    const recoveryButton = panel.querySelector('[data-recover]');
+    recoveryButton.addEventListener('click', async () => {
+      const email = panel.querySelector('[name="email"]');
+      if (!email.reportValidity()) return;
+      recoveryButton.disabled = true;
+      try {
+        const redirect = new URL('./?edit=1', location.href);
+        await request('/auth/v1/recover?redirect_to=' + encodeURIComponent(redirect.href), json('POST', { email: email.value }));
+        notice.textContent = 'If this email is registered, check your inbox for the password link.';
+      } catch (error) {
+        notice.textContent = error.message;
+      } finally {
+        recoveryButton.disabled = false;
+      }
+    });
     panel.querySelector('form').addEventListener('submit', async event => {
       event.preventDefault();
       const form = event.currentTarget;
@@ -150,7 +165,31 @@ if (projectUrl && publishableKey) {
     });
   }
 
-  if (editorMode) showSignIn();
+  const recovery = new URLSearchParams(location.hash.slice(1));
+  if (editorMode && recovery.get('type') === 'recovery' && recovery.has('access_token')) {
+    const recoveryToken = recovery.get('access_token');
+    history.replaceState(null, '', location.pathname + location.search);
+    panel.innerHTML = '<form class="editor"><label>New password<input name="password" type="password" autocomplete="new-password" minlength="8" required></label><button>Save password</button></form>';
+    panel.querySelector('form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const button = form.querySelector('button');
+      button.disabled = true;
+      try {
+        const options = json('PUT', { password: form.elements.password.value });
+        options.headers.Authorization = 'Bearer ' + recoveryToken;
+        await request('/auth/v1/user', options);
+        showSignIn();
+        notice.textContent = 'Password saved. Sign in with your new password.';
+      } catch (error) {
+        notice.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
+    });
+  } else if (editorMode) {
+    showSignIn();
+  }
   loadTrades().catch(() => { notice.textContent = 'Could not load the latest trades. Showing the saved journal.'; });
 } else if (new URLSearchParams(location.search).get('edit') === '1') {
   import('./editor.js');
